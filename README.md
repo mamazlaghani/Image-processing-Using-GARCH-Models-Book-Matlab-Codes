@@ -1,9 +1,10 @@
 # Image-processing-Using-GARCH-Models-Book-Matlab-Codes
-#this document, the main files related to 2D-GARCH model are introduced (which are used in chapters 1-6)
+This document, the main files related to 2D-GARCH model are introduced (which are used in chapters 1-6)
 
-1.	Two dimensional GARCH models 
+# 1. Two Dimensional GARCH Models
 
-1.1.2D-GARCH
+## 1.1. 2D-GARCH
+
 
 
 
