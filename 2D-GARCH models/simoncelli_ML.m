@@ -1,0 +1,12 @@
+function [s,p]=simoncelli_ML(y,van);
+x0=[.4;.6];
+A=[];
+b=[];
+Aeq=[];
+beq=[];
+lowerBounds=[0.0001;0.0001]
+upperBounds=[2;10];
+[coefficients , LLF, exitFlag , output , lambda] =  fmincon('simoncelli_object_func_sum'  , x0 , A  , b, Aeq , beq ,lowerBounds ,upperBounds ,[] , [],y ,van);
+s=coefficients(1);
+p=coefficients(2);
+%c=fminsearch('simoncelli_object_func_sum',x0,[],y,van)
