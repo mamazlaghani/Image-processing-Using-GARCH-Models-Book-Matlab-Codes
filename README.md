@@ -54,7 +54,8 @@ Inputs:
 -	y : 2-D data that should be modeled using 2D-GARCH-GG
 -	v: variance of noise (noise of input data)
 -	X=[]
- Important Outputs:
+
+Important Outputs:
 -	Coefficients: coefficients of fitted 2D-GARCH-GG model
 -	hh: conditional standard deviation 
 
