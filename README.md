@@ -40,4 +40,21 @@ Important Outputs:
 - Coefficients: coefficients of fitted 2D-GARCH models
 -	hh1: conditional standard deviation of first 2D-GARCH model in the mixture 
 -	hh2: conditional standard deviation of second 2D-GARCH model in the mixture 
+## 1.3.	2D-GARCH-GG (generalized Gaussian) model
+
+	For modeling using 2D-GARCH-GG model use garchfitt2_GG (supposing 2d input data is noisy)
+
+Used in sections 2-2,4-4, 5-4-1,6-4-2 of the book 
+
+ function [coefficients,hh,e] = garchfitt2_GG(spec,y,v,X);
+
+Inputs:
+
+-	spec: [r1,r2,m1,m2,p1,p2,q1,q2]:  r1,r2,m1,m2: degree of 2D-ARMA model (if doesn’t use ARMA model set 0 0 0 0,    p1,p2,q1,q2: degree of 2D-GARCH-GG model usually [1 1 1 1], so  spec is usually [0 0 0 0 1 1 1 1];
+-	y : 2-D data that should be modeled using 2D-GARCH-GG
+-	v: variance of noise (noise of input data)
+-	X=[]
+ Important Outputs:
+-	Coefficients: coefficients of fitted 2D-GARCH-GG model
+-	hh: conditional standard deviation 
 
