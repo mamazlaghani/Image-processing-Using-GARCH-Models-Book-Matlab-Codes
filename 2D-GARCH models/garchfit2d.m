@@ -1,0 +1,76 @@
+function [coefficients,hh,e] = garchfitt2(spec,y,X);
+
+r1=spec(1);
+r2=spec(2);
+m1=spec(3);
+m2=spec(4);
+p1=spec(5);
+p2=spec(6);
+q1=spec(7);
+q2=spec(8);
+
+C=[];
+regress  =  [];
+AR=[];
+MA=[];
+GARCH=[];
+ARCH=[];
+K=[];
+unconditionalVariance  =  [];          % Make sure it exists.
+
+
+%     General ARMA conditional mean with no regression component.
+%
+      [AR , MA , C , unconditionalVariance]  =  arma022(y , r1 , r2, m1 , m2);
+
+      
+%
+% Create initial conditional variance parameter estimates if necessary.
+% As for the conditional mean above, this is an 'all or nothing' approach
+% for specification of the conditional variance.
+%
+
+if isempty(K) | (isempty(GARCH) & (P > 0)) | (isempty(ARCH) & (Q > 0))
+
+ [K , GARCH , ARCH] = garch02(p1, p2 , q1, q2 , unconditionalVariance);
+
+ Flag2  =  logical(0);        % Indicate an INCOMPLETE variance specification.
+
+end
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%%
+%
+
+b=0.99999800000000;
+A  =  [zeros(1,1+[(r1+1)*(r2+1)-1]+[(m1+1)*(m2+1)-1]+size(X,2)+1)  ones(1,(p1+1)*(p2+1)-1)  ones(1,(q1+1)*(q2+1)-1)];
+size(A);
+Aeq  =  [];
+beq  =  [];
+infinity     =  inf;
+hundred      =  100;
+C;
+upperBounds  =  [];
+x0  =  [C ; AR(:) ; MA(:) ; regress(:) ; K ; GARCH(:) ; ARCH(:)];
+size(x0)
+%[asd,fgh]=size(x0);
+%x0=zeros(asd,fgh)+.000001;
+%specc=garchset;
+lowerBounds  =  [-hundred(ones(1+[(r1+1)*(r2+1)-1]+[(m1+1)*(m2+1)-1],1)) ; -infinity(ones(size(X,2),1)) ; 1e-10 ; zeros(((p1+1)*(p2+1)-1)+((q1+1)*(q2+1)-1),1)];
+size(lowerBounds)
+[coefficients , LLF, exitFlag , output , lambda] =  fmincon('garchlfn22'  , x0 , A  , b, Aeq , beq ,lowerBounds ,upperBounds ,[], [] ,y , r1 , r2 , m1 , m2, p1 , p2, q1 , q2, X);
+[LLF , G , H , e , hh] = garchlfn22(coefficients , y , r1 , r2 , m1 , m2 , p1 ,p2 ,q1 , q2 , X);
+
+
