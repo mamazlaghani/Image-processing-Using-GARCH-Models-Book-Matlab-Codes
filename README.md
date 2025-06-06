@@ -36,8 +36,8 @@ inputs:
 -	y : 2-D data that should be modeled using 2D-GARCH
 - 	X=[]
 
-	Important Outputs:
--Coefficients: coefficients of fitted 2D-GARCH models
+Important Outputs:
+- Coefficients: coefficients of fitted 2D-GARCH models
 -	hh1: conditional standard deviation of first 2D-GARCH model in the mixture 
 -	hh2: conditional standard deviation of second 2D-GARCH model in the mixture 
 
